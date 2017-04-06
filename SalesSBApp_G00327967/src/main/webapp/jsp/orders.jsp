@@ -7,11 +7,7 @@
 <body>
 <h2>List of Orders</h2>
 	<table>
-	  <tr>
-	    <th>Products</th>
-	    <th>Customers</th> 
-	    <th>Orders</th>
-	  </tr>
+	  
 	  <tr>
 	  	<td><a href="/">Home</a></td>
 	    <td><a href="/addOrder">Add Order</a></td>
