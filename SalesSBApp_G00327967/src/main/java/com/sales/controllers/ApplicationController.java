@@ -10,4 +10,19 @@ public class ApplicationController {
 	String indexPage(){		
 		return "index";
 	}
+	
+	@GetMapping("/showProducts")
+	String productsPage(){		
+		return "Products";
+	}
+	
+	@GetMapping("/showCustomers")
+	String customersPage(){		
+		return "customers";
+	}
+	
+	@GetMapping("/showOrders")
+	String ordersPage(){		
+		return "orders";
+	}
 }
