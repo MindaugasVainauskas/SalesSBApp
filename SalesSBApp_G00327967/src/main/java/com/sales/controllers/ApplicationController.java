@@ -1,10 +1,17 @@
 package com.sales.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.sales.models.Product;
 import com.sales.services.CustomerService;
 import com.sales.services.OrderService;
 import com.sales.services.ProductService;
@@ -30,6 +37,29 @@ public class ApplicationController {
 	String productsPage(Model model){		
 		model.addAttribute("prodList", productService.listProducts());
 		return "Products";
+	}
+	
+	@GetMapping("/addProduct")
+	public String addProduct(Product product){
+		return "addProduct";
+	}
+	
+	@PostMapping("/addProduct")
+	public String addNewProduct(@Valid @ModelAttribute("product") Product product, BindingResult result, @RequestParam String pDesc, @RequestParam int qtyInStock){
+		
+		if(result.hasErrors()){
+			return "addProduct";
+		}
+		
+		product = new Product();
+		product.setpDesc(pDesc);
+		product.setQtyInStock(qtyInStock);
+		
+		productService.addProduct(product);
+		
+		
+		
+		return "redirect:/showProducts";
 	}
 	
 	@GetMapping("/showCustomers")

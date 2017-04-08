@@ -32,5 +32,10 @@ public class ProductService {
 		//return filled list
 		return productList;
 	}
+	
+	//add new product to the list
+	public void addProduct(Product prod){
+		productRepo.save(prod);
+	}
 
 }

@@ -9,26 +9,28 @@
 </head>
 <body>
 <h2>List of Orders</h2>
-	<table>
-	  <tr>
-			<th>Order ID</th>
-			<th>Quantity</th>
-			<th>Order Date</th>
-			<th>Customer</th>
-			<th>Product</th>			
-		</tr>
-		<tr>
-			<c:forEach items="${orderList}" var="order">
-				<tr>
-					<td>${order.oId}</td>
-					<td>${order.qty}</td>	
-					<td>${order.orderDate}</td>
-					<td>${order.cust.cId}</td>
-					<td>${order.prod.pId}</td>				
-				</tr>
-			</c:forEach>
-		</tr>
-		</table>    
+
+	<c:forEach items="${orderList}" var="order">
+		<h2>${order.oId}</h2>
+		<table>
+		    <tr>
+				<th>Quantity</th>
+				<th>Order Date</th>
+				<th>Customer ID</th>
+				<th>Customer Name</th>
+				<th>Product ID</th>	
+				<th>Description</th>			
+			</tr>				 
+			<tr>
+				<td>${order.qty}</td>
+				<td>${order.orderDate}</td>	
+				<td>${order.cust.cId}</td>
+				<td>${order.cust.cName}</td>
+				<td>${order.prod.pId}</td>
+				<td>${order.prod.pDesc}</td>				
+			</tr>		
+		</table>  
+	</c:forEach>  
 	    <a href="/">Home</a>
 	    <a href="/addOrder">Add Order</a>
 	    <a href="/showProducts">List Products</a>
