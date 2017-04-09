@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.sales.models.Customer;
 import com.sales.models.Product;
 import com.sales.services.CustomerService;
 import com.sales.services.OrderService;
@@ -33,6 +34,7 @@ public class ApplicationController {
 		return "index";
 	}
 	
+	//-------------------------------- Product related methods -------------------------------------------
 	@GetMapping("/showProducts")
 	String productsPage(Model model){		
 		model.addAttribute("prodList", productService.listProducts());
@@ -51,26 +53,46 @@ public class ApplicationController {
 			return "addProduct";
 		}
 		
+		//make new Product object and set its parameters
 		product = new Product();
 		product.setpDesc(pDesc);
 		product.setQtyInStock(qtyInStock);
 		
-		productService.addProduct(product);
-		
-		
-		
+		//save the new product in the database
+		productService.addProduct(product);	
+		//return product listing page
 		return "redirect:/showProducts";
 	}
 	
+	// --------------------  Customer related methods ------------------------------------------
 	@GetMapping("/showCustomers")
-	String customersPage(Model model){	
+	public String customersPage(Model model){	
 		model.addAttribute("custList", customerService.listCustomers());
 		return "customers";
 	}
 	
+	@GetMapping("/addCustomer")
+	public String addCustomer(Customer customer){
+		return "addCustomer";
+	}
+	
+	@PostMapping("addCustomer")
+	public String addNewCustomer(@Valid @ModelAttribute("customer") Customer customer, BindingResult result, @RequestParam String cName){
+		if(result.hasErrors()){
+			return "addCustomer";
+		}
+		
+		customer = new Customer();
+		customer.setcName(cName);
+		
+		customerService.addCustomer(customer);
+		return "redirect:/showCustomers";
+	}
+	
 	@GetMapping("/showOrders")
-	String ordersPage(Model model){	
+	public String ordersPage(Model model){	
 		model.addAttribute("orderList", orderService.listOrders());
 		return "orders";
 	}
 }
+ 

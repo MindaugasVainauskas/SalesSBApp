@@ -32,4 +32,9 @@ public class CustomerService {
 			//return filled list
 			return custList;
 		}
+		
+		//save new customer into database
+		public void addCustomer(Customer customer){
+			customerRepo.save(customer);
+		}
 }
