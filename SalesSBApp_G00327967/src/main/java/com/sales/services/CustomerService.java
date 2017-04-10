@@ -37,4 +37,8 @@ public class CustomerService {
 		public void addCustomer(Customer customer){
 			customerRepo.save(customer);
 		}
+		
+		public Customer getCustomerById(Long cId){
+			return customerRepo.findOne(cId);
+		}
 }

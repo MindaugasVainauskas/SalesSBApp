@@ -28,5 +28,10 @@ public class OrderService {
 		
 		return orderList;
 	}
+	
+	//save new order in the database
+	public void addOrder(Order order){
+		orderRepo.save(order);
+	}
 
 }

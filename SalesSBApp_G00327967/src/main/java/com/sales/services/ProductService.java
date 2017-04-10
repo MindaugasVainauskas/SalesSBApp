@@ -37,5 +37,10 @@ public class ProductService {
 	public void addProduct(Product prod){
 		productRepo.save(prod);
 	}
+	
+	//get product by ID
+	public Product getProductbyId(Long pId){
+		return productRepo.findOne(pId);
+	}
 
 }
