@@ -86,7 +86,7 @@ public class ApplicationController {
 		return "addCustomer";
 	}
 	
-	@PostMapping("addCustomer")
+	@PostMapping("/addCustomer")
 	public String addNewCustomer(@Valid @ModelAttribute("customer") Customer customer, 
 			BindingResult result, @RequestParam String cName){
 		if(result.hasErrors()){

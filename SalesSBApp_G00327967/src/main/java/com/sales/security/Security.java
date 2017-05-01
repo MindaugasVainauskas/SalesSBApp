@@ -12,7 +12,8 @@ public class Security extends WebSecurityConfigurerAdapter{
 	@Override
 	public void configure(HttpSecurity httpSec) throws Exception{
 		httpSec.authorizeRequests()
-				.antMatchers("/*").hasRole("USER")//requests going to any page with / before it will require authentication
+				.antMatchers("/showProducts", "/addProduct", "/showCustomers", "/addCustomer", "/showOrders"
+						, "/addOrder").hasRole("USER")//requests going to any page with / before it will require authentication
 			.and()
 				.formLogin().permitAll()//form authentication is used.
 			.and()
